@@ -35,6 +35,13 @@ class DatabaseSeeder extends Seeder
             SalesStage::create($stage);
         }
 
+        \App\Models\Lead::create([
+            'name' => 'John Doe',
+            'email' => 'john.doe@example.com',
+            'company' => 'Dental Care Inc.',
+            'sales_stage_id' => 1, // Lead Captured
+        ]);
+
         $this->call(EmailTemplateSeeder::class);
     }
 }
