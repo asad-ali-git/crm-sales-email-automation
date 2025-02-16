@@ -4,7 +4,8 @@
     <!-- Lead Selection -->
     <div class="mb-4">
         <label for="leadId" class="block text-sm font-medium text-gray-700">Select Lead</label>
-        <select id="leadId" wire:model="leadId" class="mt-1 block w-full p-2 border border-gray-300 rounded-md">
+        <select id="leadId" wire:model="leadId" wire:change="updateLead($event.target.value)"
+            class="mt-1 block w-full p-2 border border-gray-300 rounded-md">
             <option value="">Select a Lead</option>
             @foreach ($leads as $lead)
                 <option value="{{ $lead->id }}">{{ $lead->name }} ({{ $lead->email }})</option>
@@ -16,7 +17,7 @@
     @if ($leadId)
         <div class="mb-4">
             <label for="selectedStage" class="block text-sm font-medium text-gray-700">Select Sales Stage</label>
-            <select id="selectedStage" wire:model="selectedStage" wire:change="updateStage($event.target.value)"
+            <select id="selectedStage" wire:model="selectedStageId" wire:change="updateStage($event.target.value)"
                 class="mt-1 block w-full p-2 border border-gray-300 rounded-md">
                 <option value="">Select a Sales Stage</option>
                 @foreach ($salesStages as $stage)

@@ -34,5 +34,7 @@ class DatabaseSeeder extends Seeder
         foreach ($stages as $stage) {
             SalesStage::create($stage);
         }
+
+        $this->call(EmailTemplateSeeder::class);
     }
 }

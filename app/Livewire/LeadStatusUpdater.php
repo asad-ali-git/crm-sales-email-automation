@@ -15,6 +15,8 @@ class LeadStatusUpdater extends Component
 
     public $selectedStage;
 
+    public $selectedStageId;
+
     public $templateContent;
 
     public $leads;
@@ -35,14 +37,18 @@ class LeadStatusUpdater extends Component
         $this->templateContent = null;
     }
 
+    public function updateLead($leadId)
+    {
+        $this->leadId = $leadId;
+    }
+
     public function updateStage($stageId)
     {
-        dd(false);
         // Fetch the selected stage and corresponding email template
         $this->selectedStage = SalesStage::find($stageId);
-        $template = EmailTemplate::where('sales_stage_id', $stageId)->first();
+        $this->selectedStageId = $this->selectedStage->id;
 
-        dd($template);
+        $template = EmailTemplate::where('sales_stage_id', $stageId)->first();
 
         if ($template) {
             // Personalize the template content with lead data
